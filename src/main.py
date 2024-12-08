@@ -16,8 +16,8 @@ async def read_root():
     return {"Hello": "World"}
 
 
-@app.get("/calc")
-async def calc(num1: int, num2: int, operator: str):
+@app.post("/calc")
+async def calc(num1, operator, num2):
     answer = 0
     if operator == '+':
         answer = num1 + num2
@@ -27,7 +27,7 @@ async def calc(num1: int, num2: int, operator: str):
         answer = num1 * num2
     elif operator == '/':
         answer = num1 / num2
-    return{answer}
+    return {answer}
 
 
 if __name__ == "__main__":
