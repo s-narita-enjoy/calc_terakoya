@@ -6,9 +6,9 @@ app = FastAPI()
 
 
 class Item(BaseModel):
-    num1: int
-    num2: int
-    operator: str
+    num1: object
+    num2: object
+    operator: object
 
 
 @app.get("/")
@@ -19,14 +19,19 @@ async def read_root():
 @app.post("/calc")
 async def calc(num1, operator, num2):
     answer = 0
-    if operator == '+':
-        answer = num1 + num2
-    elif operator == '-':
-        answer = num1 - num2
-    elif operator == '*':
-        answer = num1 * num2
-    elif operator == '/':
-        answer = num1 / num2
+    i_num1 = int(num1)
+    i_num2 = int(num2)
+    str_operator = str(operator)
+
+
+    if str_operator == '+':
+        answer = i_num1 + i_num2
+    elif str_operator == '-':
+        answer = i_num1 - i_num2
+    elif str_operator == '*':
+        answer = i_num1 * i_num2
+    elif str_operator == '/':
+        answer = i_num1 / i_num2
     return {answer}
 
 
